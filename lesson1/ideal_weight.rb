@@ -5,14 +5,13 @@
 =end
 
 print "Введите ваше имя: "
-user_name = gets.chomp
-user_name.capitalize!
+user_name = gets.chomp.capitalize!
 print "Введите ваш рост: "
-user_height = gets.chomp
+user_height = gets.chomp.to_i
 
-ideal_weight = (user_height.to_i - 110) * 1.15
+ideal_weight = (user_height - 110) * 1.15
 
-if ideal_weight <0
+if ideal_weight < 0
   puts "Ваш вес уже оптимальный"
 else
   puts "#{user_name}, ваш идеальный вес: #{ideal_weight} килограмм"

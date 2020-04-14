@@ -16,14 +16,14 @@ triangle = []
 3.times do 
   triangle << gets.chomp.to_f
 end
-triangle.sort!
+a, b, c = triangle.sort!
 
 if is_triangle_exist(triangle)
-  if triangle[2]**2 == triangle[0]**2 + triangle[1]**2
+  if c**2 == a**2 + b**2
     puts "Треугольник прямоугольный"
-  elsif triangle[0] == triangle[1] && triangle[1] == triangle[2]
+  elsif a == b && b == c
     puts "Треугольник равнобедренный и равносторонний"
-  elsif triangle[0] == triangle[1] || triangle[1] == triangle[2]
+  elsif a == b || b == c
     puts "Треугольник равнобедренный"
   else
     puts "Треугольник разносторонний"
