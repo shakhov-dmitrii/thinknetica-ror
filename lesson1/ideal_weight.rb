@@ -13,7 +13,7 @@ user_height = gets.chomp
 ideal_weight = (user_height.to_i - 110) * 1.15
 
 if ideal_weight <0
-  puts "Ваш вес уже оптимальный" if ideal_weight < 0
+  puts "Ваш вес уже оптимальный"
 else
   puts "#{user_name}, ваш идеальный вес: #{ideal_weight} килограмм"
 end
