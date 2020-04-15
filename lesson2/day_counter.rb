@@ -4,8 +4,7 @@
 для этого вроде Date#yday или Date#leap?) Алгоритм опредления високосного года: www.adm.yar.ru
 =end
 
-months = [[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],    #обычный год
-          [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]]    #високосный год
+months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 def is_leap_year?(year) 
   year % 4 == 0 && year % 100 != 0 || year % 400 == 0
@@ -16,15 +15,11 @@ day = gets.chomp.to_i
 month = gets.chomp.to_i
 year = gets.chomp.to_i
 
-flag = is_leap_year?(year) ? 1 : 0
+months[1] = 29 if is_leap_year?(year)
 
-if month >= 1 && month <= 12 && months[flag][month - 1] >= day
+if month >= 1 && month <= 12 && months[month - 1] >= day
   result = 0
-  if month > 1
-    (0...(month - 1)).each do |d|
-      result += months[flag][d]
-    end
-  end
+  result += months.take(month - 1).sum if month > 1
   result += day
   puts "Порядковый номер даты: #{result}"
 else

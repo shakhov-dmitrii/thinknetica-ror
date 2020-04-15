@@ -7,22 +7,23 @@
   - Вычислить и вывести на экран итоговую сумму всех покупок в "корзине".
 =end
 
-order = Hash.new(0)
+order = {}
 
 loop do
   item_name = gets.chomp
   break if item_name == "стоп"
   item_price = gets.chomp.to_f
   item_count = gets.chomp.to_i
-  order[item_name] = {item_price => item_count}
+  order[item_name] = {
+    price: item_price,
+    count: item_count
+  }
 end
 
 if order.any?
   sum = 0
   order.each_value do |value|
-    value.each do |price, count| 
-      sum += price * count
-    end
+    sum += value[:price] * value[:count]
   end
   puts order
   puts "Итоговая сумма: #{sum}"

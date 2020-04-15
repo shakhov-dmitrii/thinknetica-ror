@@ -3,10 +3,10 @@
 =end
 
 vowels = "aeiouy".chars
-result = Hash.new
+result = {}
 
-("a".."z").each_with_index do |char, index|
-  result[char] = index + 1 if vowels.include?(char)
+("a".."z").each.with_index(1) do |char, index|
+  result[char] = index if vowels.include?(char)
 end
 
 puts result.inspect
