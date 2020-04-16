@@ -24,11 +24,7 @@ class Station
 
   def trains_list_by_type(type)
     if @trains.any?
-      res = []
-      @trains.each do |t|
-        res << t if t.type == type
-      end
-      return res
+      res = @trains.select {|t| t.type == type}
     else
       puts "Поездов нет"
     end

@@ -37,15 +37,15 @@ class Train
   end
 
   def set_route(route)
-    route.stations_list[0].receive_train(self)
+    route.stations[0].receive_train(self)
     self.route = route
   end
 
   def move_forward
-    if station_index < @route.stations_list.size - 1
-      @route.stations_list.at(@station_index).send_train(self)
+    if station_index < @route.stations.size - 1
+      @route.stations.at(@station_index).send_train(self)
       self.station_index += 1
-      @route.stations_list.at(@station_index).receive_train(self)
+      @route.stations.at(@station_index).receive_train(self)
     else
       puts "Вы на конечной станции."
     end
@@ -53,19 +53,21 @@ class Train
 
   def move_backward
     if station_index > 0
-      @route.stations_list.at(@station_index).send_train(self)
+      @route.stations.at(@station_index).send_train(self)
       self.station_index -= 1
-      @route.stations_list.at(@station_index).receive_train(self)
+      @route.stations.at(@station_index).receive_train(self)
     else
       puts "Вы в начале пути. На предыдущую станцию нельзя вернуться."
     end
   end
 
-  def show_stations
-    result = []
-    result << self.route.stations_list[station_index - 1] if station_index != 0
-    result << self.route.stations_list[station_index]
-    result << self.route.stations_list[station_index + 1] if station_index < self.route.stations_list.size - 1
-    return result
+  def show_stations(type)
+    if type == "previous"
+      self.route.stations[station_index - 1] if station_index != 0
+    elsif type == "current"
+      self.route.stations[station_index]
+    elsif type == "next"
+      self.route.stations[station_index + 1] if station_index < self.route.stations.size - 1
+    end
   end
 end 

@@ -15,6 +15,7 @@ puts "Поезда на станции #{first_station.trains_list}"
 
 # Может возвращать список поездов на станции по типу (см. ниже): кол-во грузовых, пассажирских
 puts "Грузовые поезда на станции: #{first_station.trains_list_by_type("грузовой")}"
+puts "Пассажирские поезда на станции: #{first_station.trains_list_by_type("пассажирский")}"
 
 # Может отправлять поезда (по одному за раз, при этом, поезд удаляется из списка поездов, находящихся на станции).
 first_station.send_train(first_station_train)
@@ -29,10 +30,10 @@ my_route.add_station(Station.new("Промежуточная-1"))
 tmp_station = Station.new("Промежуточная-2")
 my_route.add_station(tmp_station)
 # Может выводить список всех станций по-порядку от начальной до конечной
-puts "Станции на маршруте: #{my_route.stations_list}"
+puts "Станции на маршруте: #{my_route.stations}"
 # Может удалять промежуточную станцию из списка
 my_route.delete_station(tmp_station)
-puts "Станции на маршруте после изменения: #{my_route.stations_list}"
+puts "Станции на маршруте после изменения: #{my_route.stations}"
 
 # Поезд имеет номер (произвольная строка) и тип (грузовой, пассажирский) и количество вагонов, эти данные указываются при создании 
 # экземпляра класса
@@ -68,7 +69,9 @@ train1.move_forward
 train1.move_forward
 train1.move_forward
 train1.move_forward
-# Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
-puts "Предыдущая и текущая станции: #{train1.show_stations}"
 train1.move_backward
-puts "Предыдущая, текущая и слудующая станции: #{train1.show_stations}"
+# Возвращать предыдущую станцию, текущую, следующую, на основе маршрута
+puts "Предыдущая станция: #{train1.show_stations("previous")}"
+puts "Текущая станции: #{train1.show_stations("current")}"
+
+puts "Следующая станция: #{train1.show_stations("next")}"
